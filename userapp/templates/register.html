@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 350px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #aaa;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1d7ae4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0e5ec0;
+        }
+
+        .messages {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1d7ae4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Create Account</h2>
+
+        {% if messages %}
+            <div class="messages">
+                {% for msg in messages %}
+                    <p>{{ msg }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <input type="text" name="username" placeholder="Enter Username" required>
+
+            <input type="email" name="email" placeholder="Enter Email" required>
+
+            <input type="password" name="password" placeholder="Enter Password" required>
+
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p style="text-align:center; margin-top: 10px;">
+            Already have an account? <a href="{% url 'login' %}">Login</a>
+        </p>
+    </div>
+
+</body>
+</html>
