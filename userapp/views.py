@@ -44,10 +44,12 @@ def login_view(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
+        print(user)
         if user is not None:
             # Important: this simply creates a session for this device/browser.
             # It DOES NOT log out other sessions, so multi-device login is allowed.
             login(request, user)
+            print(user)
             return redirect(home)  # change to your home/dashboard
         else:
             messages.error(request, "Invalid credentials.")
